@@ -25,7 +25,7 @@ jobs:
           # key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           script: |
-            cd /usr/loca/appSrc
+            cd /usr/local/appSrc
             git pull origin main
             git status
 
