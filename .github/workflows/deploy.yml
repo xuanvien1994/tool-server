@@ -16,9 +16,13 @@ jobs:
         run: sudo apt-get install -qq openssh-client
 
       - name: Set up SSH agent
-        uses: webfactory/ssh-agent@v0.5.1
+        uses: appleboy/ssh-action@master
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
 
       - name: Deploy to Linux server
         run: |
