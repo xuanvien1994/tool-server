@@ -9,16 +9,14 @@ const names = [
   "Thuong",
   "Tin",
   "Hong",
-  "Min",
+  "Minh",
 ];
-let circleTable;
 
 document.addEventListener("DOMContentLoaded", () => {
-  circleTable = document.getElementById("circleTable");
-  renderCircleTable();
+  renderNameTable();
 });
 
-function renderCircleTable() {
+function renderNameTable() {
   circleTable.innerHTML = "";
 
   const radius = 120;
@@ -39,18 +37,60 @@ function renderCircleTable() {
 
     circleTable.appendChild(personDiv);
   }
+  const nameTableBody = document.querySelector("#nameTable tbody");
+  nameTableBody.innerHTML = "";
+
+  names.forEach((name) => {
+    const row = document.createElement("tr");
+    const nameCell = document.createElement("td");
+    nameCell.textContent = name;
+    row.appendChild(nameCell);
+
+    const actionsCell = document.createElement("td");
+    const deleteButton = document.createElement("button");
+    deleteButton.setAttribute("class", "add-name-button");
+    deleteButton.textContent = "Remove";
+    deleteButton.addEventListener("click", () => removeName(name));
+    actionsCell.appendChild(deleteButton);
+    row.appendChild(actionsCell);
+
+    nameTableBody.appendChild(row);
+  });
+}
+
+function addName() {
+  const newNameInput = document.getElementById("newName");
+  const newName = newNameInput.value.trim();
+
+  if (newName) {
+    names.push(newName);
+    newNameInput.value = "";
+    renderNameTable();
+  }
+}
+
+function removeName(name) {
+  const nameIndex = names.indexOf(name);
+  if (nameIndex !== -1) {
+    names.splice(nameIndex, 1);
+    renderNameTable();
+  }
 }
 
 function arrangeRandomly() {
   shuffleArray(names);
-  setTimeout(() => {
-    renderCircleTable();
-  }, 100);
+  renderNameTable();
 }
 
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
+function addNameOnEnter(event) {
+  if (event.key === "Enter") {
+    addName();
   }
 }
