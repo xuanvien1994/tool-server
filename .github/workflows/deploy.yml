@@ -26,9 +26,10 @@ jobs:
           port: 22
           script: |
             cd /usr/local/appSrc
+            git clone https://github.com/xuanvien1994/tool-server.git
             git pull origin main
             git status
 
       # - name: Deploy to Linux server
-      #   run: |
+      #   run: |https://github.com/xuanvien1994/tool-server.git
       #     ssh root@45.77.252.174 "cd /usr/loca/appSrc && git pull origin main"
