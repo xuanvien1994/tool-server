@@ -27,6 +27,7 @@ jobs:
           script: |
             cd /usr/local/appSrc/tool-server
             git pull origin main
+            service nginx reload
             git status
 
       # - name: Deploy to Linux server
