@@ -25,8 +25,7 @@ jobs:
           # key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           script: |
-            cd /usr/local/appSrc
-            git clone https://github.com/xuanvien1994/tool-server.git
+            cd /usr/local/appSrc/tool-server
             git pull origin main
             git status
 
