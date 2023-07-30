@@ -10,7 +10,6 @@ const names = [
   "Tin",
   "Hong",
   "Min",
-  "Vien2",
 ];
 let circleTable;
 
