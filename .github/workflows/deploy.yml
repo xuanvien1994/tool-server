@@ -23,7 +23,11 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
+          script: |
+            cd /usr/loca/appSrc
+            git pull origin main
+            git status
 
-      - name: Deploy to Linux server
-        run: |
-          ssh root@45.77.252.174 "cd /usr/loca/appSrc && git pull origin main"
+      # - name: Deploy to Linux server
+      #   run: |
+      #     ssh root@45.77.252.174 "cd /usr/loca/appSrc && git pull origin main"
