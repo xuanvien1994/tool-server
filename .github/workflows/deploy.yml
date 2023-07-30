@@ -1,0 +1,25 @@
+name: Deploy to Linux Server
+on:
+  push:
+    branches:
+      - main # Change this to the branch you want to trigger deployments from
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install SSH client
+        run: sudo apt-get install -qq openssh-client
+
+      - name: Set up SSH agent
+        uses: webfactory/ssh-agent@v0.5.1
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Deploy to Linux server
+        run: |
+          ssh root@45.77.252.174 "cd /usr/loca/appSrc && git pull origin main"
